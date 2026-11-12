@@ -5,3 +5,7 @@ from parqueadero.descuentos import aplicar_descuento
 
 def test_cliente_frecuente_recibe_diez_por_ciento_de_descuento():
     assert aplicar_descuento(3000, "frecuente") == 2700
+
+
+def test_cliente_sin_beneficio_paga_el_valor_completo():
+    assert aplicar_descuento(3000, "ninguno") == 3000

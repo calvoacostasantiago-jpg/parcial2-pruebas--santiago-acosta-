@@ -16,7 +16,11 @@ def calcular_tarifa(minutos: int, tipo_vehiculo: str) -> int:
     """
     if tipo_vehiculo not in TARIFA_POR_HORA:
         raise ValueError("Tipo de vehículo no válido")
-    if not 0 <= minutos <= MINUTOS_MAXIMOS:
+    if (
+        not isinstance(minutos, int)
+        or isinstance(minutos, bool)
+        or not 0 <= minutos <= MINUTOS_MAXIMOS
+    ):
         raise ValueError("Los minutos deben estar entre 0 y 1440")
 
     if minutos <= MINUTOS_DE_GRACIA:

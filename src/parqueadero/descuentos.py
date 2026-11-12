@@ -1,15 +1,14 @@
 """Descuentos para clientes del parqueadero."""
 
+PORCENTAJE_DESCUENTO = {"ninguno": 0, "frecuente": 10, "convenio": 20}
+
 
 def aplicar_descuento(valor: int, tipo_cliente: str) -> int:
-    if tipo_cliente not in ("ninguno", "frecuente", "convenio"):
+    """Devuelve el valor con descuento, redondeado hacia abajo al peso entero."""
+    if tipo_cliente not in PORCENTAJE_DESCUENTO:
         raise ValueError("Tipo de cliente no válido")
     if valor < 0:
         raise ValueError("El valor no puede ser negativo")
-    if valor == 0:
-        return 0
-    if tipo_cliente == "ninguno":
-        return valor
-    if tipo_cliente == "convenio":
-        return valor * 80 // 100
-    return valor * 90 // 100
+
+    porcentaje_a_pagar = 100 - PORCENTAJE_DESCUENTO[tipo_cliente]
+    return valor * porcentaje_a_pagar // 100

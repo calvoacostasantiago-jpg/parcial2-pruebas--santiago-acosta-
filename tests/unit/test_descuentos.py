@@ -1,5 +1,7 @@
 """Pruebas de descuentos construidas con ciclos rojo, verde y refactor."""
 
+import pytest
+
 from parqueadero.descuentos import aplicar_descuento
 
 
@@ -13,3 +15,8 @@ def test_cliente_sin_beneficio_paga_el_valor_completo():
 
 def test_cliente_con_convenio_recibe_veinte_por_ciento_de_descuento():
     assert aplicar_descuento(25000, "convenio") == 20000
+
+
+@pytest.mark.parametrize("tipo_cliente", ["ninguno", "frecuente", "convenio"])
+def test_valor_cero_se_mantiene_en_cero(tipo_cliente):
+    assert aplicar_descuento(0, tipo_cliente) == 0

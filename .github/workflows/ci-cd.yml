@@ -1,4 +1,3 @@
-```yaml
 # Pipeline de integración y despliegue continuos del parcial.
 # Lo entrega el docente completo: no hace falta modificarlo.
 # Cada job corre en su propia máquina virtual (runner). El despliegue,
@@ -72,16 +71,3 @@ jobs:
         run: |
           echo "Versión: ${{ github.sha }}"
           echo "Desplegado"
-```
-### Comandos
-
-```bash
-uv sync                                   # instala todo y crea uv.lock (súbanlo al repositorio)
-uv run pytest tests/unit -v               # pruebas unitarias
-uv run pytest tests/bdd -v                # escenarios BDD
-uv run ruff check .                       # análisis estático
-uv run ruff format .                      # formatea el código
-uv run pytest tests/unit tests/bdd --cov --cov-report=term-missing   # cobertura
-```
-
-`uv.lock` debe ir en el primer commit: el pipeline instala con `uv sync --locked` y falla si no existe.

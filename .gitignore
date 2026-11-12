@@ -1,6 +1,3 @@
-**`.gitignore`**
-
-```text
 .venv/
 __pycache__/
 *.py[oc]
@@ -8,4 +5,3 @@ __pycache__/
 .ruff_cache/
 .coverage
 htmlcov/
-```

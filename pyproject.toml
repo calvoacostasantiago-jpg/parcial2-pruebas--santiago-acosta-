@@ -1,6 +1,3 @@
-**`pyproject.toml`**
-
-```toml
 [project]
 name = "parqueadero"
 version = "1.0.0"
@@ -40,15 +37,3 @@ max-complexity = 5
 [tool.coverage.run]
 source = ["src/parqueadero"]
 branch = true
-```
-**`.gitignore`**
-
-```text
-.venv/
-__pycache__/
-*.py[oc]
-.pytest_cache/
-.ruff_cache/
-.coverage
-htmlcov/
-```

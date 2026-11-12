@@ -2,6 +2,8 @@
 
 
 def aplicar_descuento(valor: int, tipo_cliente: str) -> int:
+    if valor == 0:
+        return 0
     if tipo_cliente == "ninguno":
         return valor
     if tipo_cliente == "convenio":

@@ -20,3 +20,21 @@ def test_cliente_con_convenio_recibe_veinte_por_ciento_de_descuento():
 @pytest.mark.parametrize("tipo_cliente", ["ninguno", "frecuente", "convenio"])
 def test_valor_cero_se_mantiene_en_cero(tipo_cliente):
     assert aplicar_descuento(0, tipo_cliente) == 0
+
+
+@pytest.mark.parametrize(
+    ("valor", "tipo_cliente", "valor_esperado"),
+    [
+        (1999, "frecuente", 1799),
+        (1999, "convenio", 1599),
+        (2999, "frecuente", 2699),
+        (2999, "convenio", 2399),
+        (1, "frecuente", 0),
+        (1, "convenio", 0),
+        (1, "ninguno", 1),
+        (10_000_000_000_000_010, "frecuente", 9_000_000_000_000_009),
+        (10_000_000_000_000_010, "convenio", 8_000_000_000_000_008),
+    ],
+)
+def test_resultado_se_redondea_hacia_abajo_al_peso_entero(valor, tipo_cliente, valor_esperado):
+    assert aplicar_descuento(valor, tipo_cliente) == valor_esperado

@@ -45,3 +45,10 @@ def test_resultado_se_redondea_hacia_abajo_al_peso_entero(valor, tipo_cliente, v
 def test_rechaza_un_valor_negativo(valor, tipo_cliente):
     with pytest.raises(ValueError, match="^El valor no puede ser negativo$"):
         aplicar_descuento(valor, tipo_cliente)
+
+
+@pytest.mark.parametrize("tipo_cliente", ["vip", "", "Frecuente", "CONVENIO", None, 0])
+@pytest.mark.parametrize("valor", [0, 3000])
+def test_rechaza_un_tipo_de_cliente_no_valido(valor, tipo_cliente):
+    with pytest.raises(ValueError, match="^Tipo de cliente no válido$"):
+        aplicar_descuento(valor, tipo_cliente)

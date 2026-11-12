@@ -38,3 +38,10 @@ def test_valor_cero_se_mantiene_en_cero(tipo_cliente):
 )
 def test_resultado_se_redondea_hacia_abajo_al_peso_entero(valor, tipo_cliente, valor_esperado):
     assert aplicar_descuento(valor, tipo_cliente) == valor_esperado
+
+
+@pytest.mark.parametrize("tipo_cliente", ["ninguno", "frecuente", "convenio"])
+@pytest.mark.parametrize("valor", [-1, -3000])
+def test_rechaza_un_valor_negativo(valor, tipo_cliente):
+    with pytest.raises(ValueError, match="^El valor no puede ser negativo$"):
+        aplicar_descuento(valor, tipo_cliente)

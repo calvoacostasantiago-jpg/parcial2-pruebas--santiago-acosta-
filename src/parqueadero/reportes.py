@@ -1,25 +1,12 @@
-import math
-import os
+"""Resumen de vehículos y recaudo diario del parqueadero."""
+
+from parqueadero.tarifas import calcular_tarifa
 
 
-def resumen(registros):
-    r = {"carro": 0, "moto": 0, "total_recaudado": 0}
-    temporal = 0
-    for reg in registros:
-        t = reg[0]
-        m = reg[1]
-        if t == "carro":
-            r["carro"] += 1
-            if m > 15:
-                v = math.ceil(m / 60) * 3000
-                if v > 25000:
-                    v = 25000
-                r["total_recaudado"] += v
-        elif t == "moto":
-            r["moto"] += 1
-            if m > 15:
-                v = math.ceil(m / 60) * 1500
-                if v > 12000:
-                    v = 12000
-                r["total_recaudado"] += v
-    return r
+def resumen(registros: list[tuple[str, int]]) -> dict[str, int]:
+    """Cuenta los vehículos y acumula el recaudo usando las tarifas vigentes."""
+    resultado = {"carro": 0, "moto": 0, "total_recaudado": 0}
+    for tipo_vehiculo, minutos in registros:
+        resultado[tipo_vehiculo] += 1
+        resultado["total_recaudado"] += calcular_tarifa(minutos, tipo_vehiculo)
+    return resultado

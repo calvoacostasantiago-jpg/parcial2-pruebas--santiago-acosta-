@@ -1,0 +1,54 @@
+**`pyproject.toml`**
+
+```toml
+[project]
+name = "parqueadero"
+version = "1.0.0"
+description = "Segundo parcial de Pruebas de Software: tarifas de un parqueadero."
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "pytest-bdd>=9.0.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.4",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"
+
+# --import-mode=importlib permite archivos de prueba con el mismo nombre en carpetas distintas.
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --import-mode=importlib"
+
+# Análisis estático: E y F (errores y defectos probables), I (orden de importaciones)
+# y C90 (complejidad ciclomática, máximo 5 por función).
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "C90"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 5
+
+# Cobertura de líneas y de ramas del código fuente.
+[tool.coverage.run]
+source = ["src/parqueadero"]
+branch = true
+```
+**`.gitignore`**
+
+```text
+.venv/
+__pycache__/
+*.py[oc]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+```

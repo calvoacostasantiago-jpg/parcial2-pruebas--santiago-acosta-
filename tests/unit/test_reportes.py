@@ -14,3 +14,6 @@ def test_resume_los_registros_del_dia():
 
 def test_sin_registros_todo_es_cero():
     assert resumen([]) == {"carro": 0, "moto": 0, "total_recaudado": 0}
+
+
+# aqui va el rest#
